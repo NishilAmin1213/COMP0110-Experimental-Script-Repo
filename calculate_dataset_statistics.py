@@ -200,6 +200,9 @@ if __name__ == "__main__":
     # Plot the boxplot for function lengths
     plot_boxplot(java_8_stats, java_11_stats, "Function Length Boxplot - Secondary Dataset")
 
+    print("\nUncomment the lines below to calculate statistics for the full dataset (requires same_param_functions_dataset.pkl and different_param_functions_dataset.pkl")
+
+    '''
     # Process the full dataset
     print("\n\n\nProcessing the Full Dataset")
     # Read the same param and different param dataset pickle files
@@ -218,6 +221,7 @@ if __name__ == "__main__":
     plot_distribution_pie(keyword_distribution, "Full Dataset")
     # Plot the boxplot of function lengths
     plot_boxplot(java_8_stats, java_11_stats, "Function Length Boxplot - Full Dataset")
+    '''
 
 
 

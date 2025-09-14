@@ -223,9 +223,10 @@ if __name__ == "__main__":
     get_avg_stats("Mistral API - Secondary Dataset", ["secondary_mistral_results.pkl"])
     # Calculate keyword removal success for the secondary dataset
     calc_keyword_removal_success('secondary_mistral_results.pkl', secondary_deprecated_search_terms)
+    print("\nUncomment line 229 below to show average statistics for the full dataset (requires mistral_results_same.pkl and mistral_results_diff.pkl")
 
     # Output average codebleu statistics for the full dataset
-    get_avg_stats("Mistral API - Full Dataset", ["mistral_results_same.pkl", "mistral_results_diff.pkl"])
+    #get_avg_stats("Mistral API - Full Dataset", ["mistral_results_same.pkl", "mistral_results_diff.pkl"])
 
 
 
