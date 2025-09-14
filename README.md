@@ -27,19 +27,31 @@ pip install git+https://github.com/k4black/codebleu.git
 This is because of dependency resolution issues that arise when installing codebleu from pip (as 0.7.1 is not available via pip and 0.7.0 does not have a compatible and available tree-sitter-java version)
 
 ### Python Files
+All the supporting datasets and results have been included in this repository so there is no specific order to run these python files. 
+
+In the case that the pkl files have not been downloaded locally you can still run the entire project over the secondary dataset. 
+
+'utils.py', 'deprecated_terms.py' and 'secondary_functions.json' will still be needed and the files should be run as-is in the following order:
+* build_secondary_dataset.py
+* prompting_pipeline.py
+* output_averaged_results.py
+* calcualte_dataset_statistics.py
+
 #### prompting_pipeline.py
-This python file uses the following dataset pickle files to prompt the LLM with the input functions and calculate codebleu results for each function. It requires the following pickle files:
+This python file uses the following dataset pickle files to prompt the LLM with the input functions and calculate codebleu results for each function. It requires the following pickle file:
 * secondary_dataset.pkl
+This python file will generate the following result dataset:
+* secondary_mistral_results.pkl
+
+Lines 130-135 have been commented out and therefore when running this python script, only the secondary dataset will be processed to save time and mistral tokens. These lines can be uncommented if you wish to run the pipeline on the original dataset and have the following additional files stored locally:
 * same_param_functions_dataset.pkl
 * different_param_functions_dataset.pkl
-This python file will generate the following result datasets:
-* secondary_mistral_results.pkl
+In this case, the following files will also be created:
 * mistral_results_same.pkl
 * mistral_results_diff.pkl
-Lines 130-135 have been commented out and therefore when running this python script, only the secondary dataset will be processed to save time and mistral tokens. These lines can be commented if you wish to run the pipeline on the original dataset
 
 #### build_secondary_dataset.py
-This python file will build the secondary dataset pickle files using the 'secondary_functions.json' as an input. The output will be 'secondary_dataset.pkl'. 
+This python file will build the secondary dataset pickle files using the 'secondary_functions.json'. The output will be 'secondary_dataset.pkl'. 
 
 #### output_averaged_results.py
 This python file will compute and output the average codebleu statistics for the secondary dataset using 'secondary_mistral_results.pkl'. It will also generate a bar chart 'Keyword Removal Bars.svg' to depict the keyword removal success visually. 
@@ -51,16 +63,5 @@ It requires 'secondary_dataset.pkl' however in the presence of 'same_param_funct
 
 #### deprecated_terms.py & utils.py
 These two files are not to be run on their own and are used by the other python files, so will be required when running the other python files in this project
-
-#### Notes
-All the supporting datasets and results have been included in this repository so there is no specific order to run these python files. 
-
-In the case that the pkl files are not downloaded locally you can still run the entire project over the secondary dataset. 
-
-'utils.py', 'deprecated_terms.py' and 'secondary_functions.json' will still be needed and the files should be run as-is in the following order:
-* build_secondary_dataset.py
-* prompting_pipeline.py
-* output_averaged_results
-* calcualte_dataset_statistics
 
 
